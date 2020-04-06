@@ -17,4 +17,14 @@ public class StudentRepo {
     public List<Student> getStudentList() {
         return studentList;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for(Student student:studentList){
+            result.append(student.toString());
+            result.append("\n");
+        }
+        return result.toString();
+    }
 }
