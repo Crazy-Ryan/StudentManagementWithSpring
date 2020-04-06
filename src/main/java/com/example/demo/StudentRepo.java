@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StudentRepo {
@@ -21,10 +22,20 @@ public class StudentRepo {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for(Student student:studentList){
+        for (Student student : studentList) {
             result.append(student.toString());
             result.append("\n");
         }
         return result.toString();
+    }
+
+    public boolean addStudent(Student newStudent) {
+        for (Student student : studentList) {
+            if (student.getName().equals(newStudent.getName())) {
+                return false;
+            }
+        }
+        studentList.add(newStudent);
+        return true;
     }
 }
