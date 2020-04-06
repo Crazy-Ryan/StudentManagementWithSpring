@@ -7,7 +7,7 @@ It is recommended to send Http request with *Postman*
 
 ## How to use it
 
-The Http request for different functions have been listed as follows
+The demo Http request for different functions have been listed as follows
 
 1. Add a new student
 
