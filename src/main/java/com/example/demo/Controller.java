@@ -30,5 +30,15 @@ public class Controller {
         return studentRepo.toString();
     }
 
+    @PostMapping("/find")
+    public String findStudentByName(@RequestBody String name) {
+        Student studentFound = studentRepo.findStudentByName(name);
+        if (null != studentFound.getName()) {
+            return studentFound.toString();
+        } else {
+            return "没有找到名为" + name + "的学生";
+        }
+    }
+
 
 }

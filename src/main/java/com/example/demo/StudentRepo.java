@@ -38,4 +38,13 @@ public class StudentRepo {
         studentList.add(newStudent);
         return true;
     }
+
+    public Student findStudentByName(String name) {
+        for (Student student : studentList) {
+            if (student.getName().equals(name)) {
+                return student;
+            }
+        }
+        return new Student();
+    }
 }
