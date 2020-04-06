@@ -47,4 +47,19 @@ public class StudentRepo {
         }
         return new Student();
     }
+
+    public boolean removeStudentByName(String name) {
+        Student studentToDelete = null;
+        for (Student student : studentList) {
+            if (student.getName().equals(name)) {
+                studentToDelete = student;
+            }
+        }
+        if (null != studentToDelete) {
+            studentList.remove(studentToDelete);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

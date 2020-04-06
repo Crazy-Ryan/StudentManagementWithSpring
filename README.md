@@ -32,3 +32,25 @@ Host: localhost:8080
 Cache-Control: no-cache
 Postman-Token: 088a3d0a-639f-78aa-dc11-01127577a742
 ```
+
+3. find student by name
+
+```
+POST /find HTTP/1.1
+Host: localhost:8080
+Cache-Control: no-cache
+Postman-Token: c627aec9-a758-15c9-504c-ec2943bad4d4
+
+张三
+```
+
+4. remove student by name
+
+```
+POST /remove HTTP/1.1
+Host: localhost:8080
+Cache-Control: no-cache
+Postman-Token: 7362c0d2-6473-3780-a27e-cb25a78e433d
+
+张三
+```

@@ -40,5 +40,12 @@ public class Controller {
         }
     }
 
-
+    @PostMapping("/remove")
+    public String removeStudentByName(@RequestBody String name) {
+        if (studentRepo.removeStudentByName(name)) {
+            return "删除成功";
+        } else {
+            return "该学生不存在";
+        }
+    }
 }
