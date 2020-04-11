@@ -1,19 +1,34 @@
 package com.example.demo;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
+
 import java.util.Objects;
 
+@Table("student_info")
 public class Student {
+    @Id
+    private Integer id;
+    @Column("sname")
     private String name;
     private String gender;
+    @Column("class_id")
     private String classId;
 
     public Student() {
     }
 
-    public Student(String name, String gender, String classId) {
+    public Student(Integer id, String name, String gender, String classId) {
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.classId = classId;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {
@@ -26,6 +41,10 @@ public class Student {
 
     public String getClassId() {
         return classId;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setName(String name) {
