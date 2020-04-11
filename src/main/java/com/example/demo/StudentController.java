@@ -14,9 +14,14 @@ public class StudentController {
         this.studentRepository = studentRepository;
     }
 
-    @GetMapping("/user/{id}")
-    public Student getStudent(@PathVariable Integer id) {
-        return studentRepository.findById(id).orElse(null);
+    @PostMapping("/add")
+    public String addStudent(@RequestBody Student student) {
+        if (null == studentRepository.findByName(student.getName())) {
+            studentRepository.save(student);
+            return "添加成功";
+        } else {
+            return "姓名重复";
+        }
     }
 
 
@@ -29,9 +34,4 @@ public class StudentController {
             return "没有找到名为" + name + "的学生";
         }
     }
-
-//    @PostMapping("add")
-//    public String addStudent(Student newStudent) {
-//
-//    }
 }
