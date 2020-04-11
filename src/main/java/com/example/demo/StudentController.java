@@ -23,7 +23,6 @@ public class StudentController {
         }
     }
 
-
     @PostMapping("/find")
     public String findStudentByName(@RequestBody String name) {
         Student studentFound = studentRepository.findByName(name);
@@ -42,4 +41,14 @@ public class StudentController {
         return result.toString();
     }
 
+    @PostMapping("/remove")
+    public String removeStudentByName(@RequestBody String name) {
+        Student studentFound = studentRepository.findByName(name);
+        if (null != studentFound) {
+            studentRepository.delete(studentFound);
+            return "删除成功";
+        } else {
+            return "该学生不存在";
+        }
+    }
 }
