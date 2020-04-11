@@ -8,3 +8,8 @@ CREATE TABLE student_info
     class_id VARCHAR(10)
 ) CHARSET utf8mb4,
   ENGINE = InnoDB;
+
+INSERT INTO student_info(sname, gender, class_id)
+VALUES ('张三', '男', '1-1'),
+       ('李四', '男', '2-1'),
+       ('王五', '女', '3-1');
