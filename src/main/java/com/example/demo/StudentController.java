@@ -1,22 +1,25 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class StudentController {
-    private final StudentRepository studentRepository;
 
-    public StudentController(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @PostMapping("/add")
     public String addStudent(@RequestBody Student student) {
-        if (null == studentRepository.findByName(student.getName())) {
-            studentRepository.save(student);
+        if (studentService.addStudent(student)) {
             return "添加成功";
         } else {
             return "姓名重复";
@@ -25,7 +28,7 @@ public class StudentController {
 
     @PostMapping("/find")
     public String findStudentByName(@RequestBody String name) {
-        Student studentFound = studentRepository.findByName(name);
+        Student studentFound = studentService.findStudentByName(name);
         if (null != studentFound) {
             return studentFound.toString();
         } else {
@@ -35,17 +38,17 @@ public class StudentController {
 
     @GetMapping("/all")
     public String getAllStudent() {
-        Iterable<Student> allStudentIter = studentRepository.findAll();
+        List<Student> allStudents = studentService.getAllStudent();
         StringBuilder result = new StringBuilder();
-        allStudentIter.forEach(student -> result.append(student.toString()).append("\n"));
+        for (Student student : allStudents) {
+            result.append(student.toString()).append("\n");
+        }
         return result.toString();
     }
 
     @PostMapping("/remove")
     public String removeStudentByName(@RequestBody String name) {
-        Student studentFound = studentRepository.findByName(name);
-        if (null != studentFound) {
-            studentRepository.delete(studentFound);
+        if (studentService.removeStudentByName(name)) {
             return "删除成功";
         } else {
             return "该学生不存在";
