@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,4 +33,13 @@ public class StudentController {
             return "没有找到名为" + name + "的学生";
         }
     }
+
+    @GetMapping("/all")
+    public String getAllStudent() {
+        Iterable<Student> allStudentIter = studentRepository.findAll();
+        StringBuilder result = new StringBuilder();
+        allStudentIter.forEach(student -> result.append(student.toString()).append("\n"));
+        return result.toString();
+    }
+
 }
